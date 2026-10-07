@@ -41,6 +41,7 @@
   --im-brass: #b08d57;
   --im-gold: #c9a227;
   --im-red: #7a1f1f;
+  --im-teal: #2b6468;          /* selection: a cold cogitator teal next to the slate */
   --im-red-bright: #a83232;
   --im-cogitator: #3bd16f;
   /* Faint cogitator lines: a near-black screen with a hint of green every 4px */
@@ -56,7 +57,7 @@
   --nordvik-background-color: var(--im-frame);
   --nordvik-text-color: var(--im-ink);
   --nordvik-secondary-color: #0d0f11;
-  --nordvik-selection-color: var(--im-red);
+  --nordvik-selection-color: var(--im-teal);
   --nordvik-item-color: rgba(47, 79, 79, 0.35);
   --nordvik-item-hover-color: rgba(176, 141, 87, 0.18);
   --nordvik-button-color: #262c30;
@@ -164,7 +165,7 @@
 }
 
 ::selection {
-  background: var(--im-red);
+  background: var(--im-teal);
   color: #f3ead2;
 }
 
@@ -182,14 +183,14 @@
   padding: 0 14px;
   border: 1px solid #0b0d0f;
   border-radius: 2px;
-  background: var(--im-steel);
+  background: linear-gradient(105deg, #3e484f 0%, #4a555d 45%, #2c3638 55%, #3e484f 100%);
   color: silver;
   font-family: var(--im-heading);
   font-variant: small-caps;
   font-size: 14px;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 4px #778899, 0 1px 1px #000;
-  box-shadow: inset 0 2px 2px silver, inset 0 -2px 2px #333;
+  text-shadow: 0 1px 1px #000;
+  box-shadow: inset 0 1px 1px rgba(192, 192, 192, 0.35), inset 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
 
 .nm_toolbar button svg {
@@ -200,7 +201,7 @@
 .nm_toolbar button[data-state="open"] {
   background: var(--im-slate);
   color: whitesmoke;
-  box-shadow: inset 0 2px 2px #5f7f7f, inset 0 -2px 2px #000, 0 2px 0 var(--im-brass);
+  box-shadow: inset 0 1px 1px rgba(143, 175, 175, 0.4), inset 0 -1px 1px #000, 0 2px 0 var(--im-brass);
 }
 
 .nm_toolbar button:focus-visible {
@@ -306,8 +307,8 @@
 }
 
 /* ── Buttons: the sheet's hover ──────────────────────────────────────────── */
-.nm_basePanel button:hover,
-.nm_dialog button:hover {
+.nm_basePanel button:not([data-part="context-trigger"]):hover,
+.nm_dialog button:not([data-part="context-trigger"]):hover {
   background-color: var(--im-slate);
   color: whitesmoke;
 }
