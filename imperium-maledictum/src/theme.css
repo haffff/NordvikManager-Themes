@@ -43,7 +43,9 @@
   --im-red: #7a1f1f;
   --im-red-bright: #a83232;
   --im-cogitator: #3bd16f;
-  --im-scanlines: repeating-linear-gradient(#000 0 2px, #050 2px 4px);
+  /* Faint cogitator lines: a near-black screen with a hint of green every 4px */
+  --im-scanlines: repeating-linear-gradient(rgba(59, 209, 111, 0.045) 0 1px, transparent 1px 4px), #060907;
+  --im-sunken: #0d0f0e;
   --im-parchment: linear-gradient(rgba(20, 16, 10, 0.82), rgba(20, 16, 10, 0.9)),
     url("@ASSET(parchment-noise.svg)"), #2a2318;
   --im-heading: "IM Fell Great Primer", "Times New Roman", Times, serif;
@@ -76,8 +78,24 @@
   --nordvik-control-strong: #3d4a4f;
 
   --nordvik-toolbar: #0d0f11;
-  --nordvik-status-bar: #000;
-  --nordvik-status-bar-border: #0a3a1c;
+  --nordvik-status-bar: #0d0f11;
+  --nordvik-status-bar-border: var(--im-slate);
+
+  --nordvik-list-item: rgba(44, 38, 28, 0.9);
+  --nordvik-list-item-hover: rgba(70, 58, 38, 0.95);
+  --nordvik-list-item-text: var(--im-ink);
+
+  /* The dock: window frames, tab rows, dividers */
+  --nordvik-dock-void: #0b0d0f;
+  --nordvik-dock-panel: #14171a;
+  --nordvik-dock-border: #262c30;
+  --nordvik-dock-border-active: var(--im-slate-light);
+  --nordvik-dock-tab: #1c2125;
+  --nordvik-dock-tab-text: #c8ccd0;
+  --nordvik-dock-overlay: rgba(176, 141, 87, 0.14);
+  --nordvik-dock-accent: var(--im-brass);
+  --nordvik-dock-button-hover: var(--im-slate);
+  --nordvik-dock-scrollbar: var(--im-slate);
 
   --nordvik-text-strong: #f3ead2;
   --nordvik-text-soft: var(--im-ink);
@@ -150,24 +168,44 @@
   color: #f3ead2;
 }
 
-/* ── Toolbar: the sheet's steel tabs ─────────────────────────────────────── */
+/* ── Toolbar: an iron bar of the sheet's steel tabs ──────────────────────── */
 .nm_toolbar {
+  background: linear-gradient(#1a1e22, #0d0f11);
+  border: 1px solid #000;
+  border-bottom: 2px solid var(--im-slate);
+  box-shadow: inset 0 1px 0 rgba(192, 192, 192, 0.15);
+  gap: 3px;
+}
+
+.nm_toolbar button {
+  height: 26px;
+  padding: 0 14px;
+  border: 1px solid #0b0d0f;
+  border-radius: 2px;
   background: var(--im-steel);
   color: silver;
-  text-shadow: 0 0 4px #778899;
+  font-family: var(--im-heading);
+  font-variant: small-caps;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 4px #778899, 0 1px 1px #000;
   box-shadow: inset 0 2px 2px silver, inset 0 -2px 2px #333;
-  border-bottom: 2px solid var(--im-slate);
 }
 
-.nm_toolbar button,
-.nm_toolbar svg {
-  color: #e6e8ea;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7));
+.nm_toolbar button svg {
+  color: silver;
 }
 
-.nm_toolbar button:hover {
+.nm_toolbar button:hover,
+.nm_toolbar button[data-state="open"] {
   background: var(--im-slate);
   color: whitesmoke;
+  box-shadow: inset 0 2px 2px #5f7f7f, inset 0 -2px 2px #000, 0 2px 0 var(--im-brass);
+}
+
+.nm_toolbar button:focus-visible {
+  outline: 1px solid var(--im-brass);
+  outline-offset: 1px;
 }
 
 /* ── Panels: dark parchment ──────────────────────────────────────────────── */
@@ -201,23 +239,24 @@
   border-bottom: 1px solid rgba(176, 141, 87, 0.5);
 }
 
-/* ── Lists ───────────────────────────────────────────────────────────────── */
-.nm_dlistitem {
-  border-bottom: 1px solid transparent;
+/* ── Lists: parchment slips; clickable ones light up with a brass edge ──── */
+.nm_dlistitem_card {
+  border: 1px solid #0b0a08;
+  border-left: 3px solid var(--im-slate);
+  border-radius: 2px;
   transition: border-color 0.12s, background-color 0.12s;
 }
 
-.nm_dlistitem:hover {
-  border-bottom-color: var(--im-brass);
+.nm_dlistitem_card_hover:hover {
+  border-left-color: var(--im-brass);
 }
 
-/* ── Status bar: cogitator readout ───────────────────────────────────────── */
+/* ── Status bar: the bottom of the iron frame ────────────────────────────── */
 .nm_statusBar {
-  background: var(--im-scanlines);
-  color: var(--im-cogitator);
-  font-family: var(--im-mono);
-  text-shadow: 0 0 4px rgba(59, 209, 111, 0.7);
-  border-top: 1px solid #0a3a1c;
+  background: linear-gradient(#0d0f11, #1a1e22);
+  color: var(--im-ink-muted);
+  border-top: 2px solid var(--im-slate);
+  box-shadow: inset 0 -1px 0 rgba(192, 192, 192, 0.12);
 }
 
 /* ── Chat ────────────────────────────────────────────────────────────────── */
@@ -244,17 +283,26 @@
 }
 
 .nm_chatInput:focus-within {
-  box-shadow: 0 0 0 1px var(--im-cogitator), 0 0 8px rgba(59, 209, 111, 0.45);
+  box-shadow: 0 0 0 1px rgba(59, 209, 111, 0.6), 0 0 8px rgba(59, 209, 111, 0.25);
 }
 
-/* ── Focused inputs glow like a cogitator screen ─────────────────────────── */
+/* ── Text fields: sunken cogitator screens, glowing green when focused ──── */
+.nm_basePanel input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
+.nm_basePanel textarea,
+.nm_dialog input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
+.nm_dialog textarea {
+  background: var(--im-scanlines);
+  border-color: var(--im-slate);
+  color: var(--im-ink);
+}
+
 .nm_basePanel input:focus,
 .nm_basePanel textarea:focus,
 .nm_dialog input:focus,
 .nm_dialog textarea:focus {
   outline: none;
   border-color: var(--im-cogitator);
-  box-shadow: 0 0 0 1px var(--im-cogitator), 0 0 8px rgba(59, 209, 111, 0.35);
+  box-shadow: 0 0 0 1px rgba(59, 209, 111, 0.6), 0 0 8px rgba(59, 209, 111, 0.25);
 }
 
 /* ── Buttons: the sheet's hover ──────────────────────────────────────────── */
