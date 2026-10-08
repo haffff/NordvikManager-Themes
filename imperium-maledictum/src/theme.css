@@ -57,7 +57,8 @@
   --nordvik-background-color: var(--im-frame);
   --nordvik-text-color: var(--im-ink);
   --nordvik-secondary-color: #0d0f11;
-  --nordvik-selection-color: var(--im-teal);
+  /* The one highlight colour (selection, current tab, current turn, drop targets). */
+  --nordvik-accent: var(--im-teal);
   --nordvik-item-color: rgba(47, 79, 79, 0.35);
   --nordvik-item-hover-color: rgba(176, 141, 87, 0.18);
   --nordvik-button-color: #262c30;
@@ -93,8 +94,6 @@
   --nordvik-dock-border-active: var(--im-slate-light);
   --nordvik-dock-tab: #1c2125;
   --nordvik-dock-tab-text: #c8ccd0;
-  --nordvik-dock-overlay: rgba(176, 141, 87, 0.14);
-  --nordvik-dock-accent: var(--im-brass);
   --nordvik-dock-button-hover: var(--im-slate);
   --nordvik-dock-scrollbar: var(--im-slate);
 
