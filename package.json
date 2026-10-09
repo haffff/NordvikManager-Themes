@@ -1,0 +1,13 @@
+{
+  "name": "nordvikmanager-themes",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Theme addons for NordvikManager: stylesheets, textures and fonts for a game.",
+  "type": "module",
+  "scripts": {
+    "pack": "node scripts/pack.mjs"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Install addon",
+  "hook": 1,
+  "isEnabled": true,
+  "content": [
+    {
+      "id": "1f3c6a10-7e1a-4c2b-9a51-0d1e00000001",
+      "Data": {
+        "Label": "Find the theme stylesheet",
+        "Name": "themeId",
+        "Value": "%qn:resource-\"imperiummaledictumtheme_theme.css\".id%"
+      },
+      "Type": "SetVariable"
+    },
+    {
+      "id": "1f3c6a10-7e1a-4c2b-9a51-0d1e00000002",
+      "Data": {
+        "Label": "Read the game's stylesheets",
+        "ParentId": "%gameId%",
+        "PropertyName": "customStylesheets",
+        "Output": "current",
+        "DefaultValue": "[]"
+      },
+      "Type": "GetPropertyValue"
+    },
+    {
+      "id": "1f3c6a10-7e1a-4c2b-9a51-0d1e00000003",
+      "Data": {
+        "Label": "Add the theme, keeping the others",
+        "Script": "let list = vars.current;\nif (typeof list === 'string') {\n  try { list = JSON.parse(list || '[]'); } catch (e) { list = []; }\n}\nif (!Array.isArray(list)) list = [];\nif (vars.themeId && list.indexOf(vars.themeId) < 0) list.push(vars.themeId);\nreturn { list: JSON.stringify(list) };"
+      },
+      "Type": "RunScript"
+    },
+    {
+      "id": "1f3c6a10-7e1a-4c2b-9a51-0d1e00000004",
+      "Data": {
+        "Label": "Switch the theme on",
+        "ParentId": "%gameId%",
+        "PropertyName": "customStylesheets",
+        "PropertyValue": "%list%"
+      },
+      "Type": "SetProperty"
+    }
+  ]
+}

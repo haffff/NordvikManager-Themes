@@ -1,0 +1,318 @@
+/*
+ * Imperium Maledictum theme for NordvikManager
+ * Dark imperial frame, parchment panels and cogitator readouts, to sit next to the
+ * Roll20 Imperium Maledictum character sheet (steel tabs, slate rules, IM Fell type).
+ *
+ * Source file: @ASSET(name) is replaced by scripts/pack.mjs with a data: URI of
+ * assets/<name>, so the built stylesheet loads nothing from outside the game.
+ * Only the documented hooks are used (see "Custom game styling" in the user guide).
+ *
+ * Font: IM Fell Great Primer by Igino Marini, SIL Open Font License 1.1 (assets/OFL.txt).
+ */
+
+@font-face {
+  font-family: "IM Fell Great Primer";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("@ASSET(IMFellGreatPrimer-Regular.woff2)") format("woff2");
+}
+
+@font-face {
+  font-family: "IM Fell Great Primer";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("@ASSET(IMFellGreatPrimer-Italic.woff2)") format("woff2");
+}
+
+/* ── Palette ─────────────────────────────────────────────────────────────── */
+:root,
+.dark {
+  /* Theme's own names, used below */
+  --im-frame: #14171a;
+  --im-frame-raised: #1c2125;
+  --im-slate: #2f4f4f;          /* darkslategray: the sheet's border */
+  --im-slate-light: #708090;    /* slategray: the sheet's rules */
+  --im-steel: linear-gradient(105deg, #708090 0%, #778899 45%, #2f4f4f 55%, #708090 100%);
+  --im-ink: #e8dfc8;            /* parchment-coloured text on dark parchment */
+  --im-ink-muted: #b9ae94;
+  --im-ink-faint: #8a8170;
+  --im-brass: #b08d57;
+  --im-gold: #c9a227;
+  --im-red: #7a1f1f;
+  --im-teal: #2b6468;          /* selection: a cold cogitator teal next to the slate */
+  --im-red-bright: #a83232;
+  --im-cogitator: #3bd16f;
+  /* Faint cogitator lines: a near-black screen with a hint of green every 4px */
+  --im-scanlines: repeating-linear-gradient(rgba(59, 209, 111, 0.045) 0 1px, transparent 1px 4px), #060907;
+  --im-sunken: #0d0f0e;
+  --im-parchment: linear-gradient(rgba(20, 16, 10, 0.82), rgba(20, 16, 10, 0.9)),
+    url("@ASSET(parchment-noise.svg)"), #2a2318;
+  --im-heading: "IM Fell Great Primer", "Times New Roman", Times, serif;
+  --im-body: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+  --im-mono: "Courier New", Courier, "Liberation Mono", monospace;
+
+  /* App variables */
+  --nordvik-background-color: var(--im-frame);
+  --nordvik-text-color: var(--im-ink);
+  --nordvik-secondary-color: #0d0f11;
+  /* The one highlight colour (selection, current tab, current turn, drop targets). */
+  --nordvik-accent: var(--im-teal);
+  --nordvik-item-color: rgba(47, 79, 79, 0.35);
+  --nordvik-item-hover-color: rgba(176, 141, 87, 0.18);
+  --nordvik-button-color: #262c30;
+  --nordvik-button-hover: var(--im-slate);
+  --nordvik-button-active: #1f3a3a;
+  --nordvik-button-border-color: var(--im-slate-light);
+
+  --nordvik-surface-sunken: #0f1113;
+  --nordvik-surface: rgba(28, 24, 18, 0.72);
+  --nordvik-surface-card: rgba(36, 31, 23, 0.85);
+  --nordvik-surface-raised: rgba(44, 38, 28, 0.9);
+  --nordvik-surface-hover: rgba(58, 50, 36, 0.92);
+  --nordvik-border: var(--im-slate);
+  --nordvik-divider: rgba(112, 128, 144, 0.55);
+
+  --nordvik-control: #262c30;
+  --nordvik-control-border: var(--im-slate-light);
+  --nordvik-control-hover: var(--im-slate);
+  --nordvik-control-strong: #3d4a4f;
+
+  --nordvik-toolbar: #0d0f11;
+  --nordvik-status-bar: #0d0f11;
+  --nordvik-status-bar-border: var(--im-slate);
+
+  --nordvik-list-item: rgba(44, 38, 28, 0.9);
+  --nordvik-list-item-hover: rgba(70, 58, 38, 0.95);
+  --nordvik-list-item-text: var(--im-ink);
+
+  /* The dock: window frames, tab rows, dividers */
+  --nordvik-dock-void: #0b0d0f;
+  --nordvik-dock-panel: #14171a;
+  --nordvik-dock-border: #262c30;
+  --nordvik-dock-border-active: var(--im-slate-light);
+  --nordvik-dock-tab: #1c2125;
+  --nordvik-dock-tab-text: #c8ccd0;
+  --nordvik-dock-button-hover: var(--im-slate);
+  --nordvik-dock-scrollbar: var(--im-slate);
+
+  --nordvik-text-strong: #f3ead2;
+  --nordvik-text-soft: var(--im-ink);
+  --nordvik-text-muted: var(--im-ink-muted);
+  --nordvik-text-subtle: var(--im-ink-faint);
+
+  --nordvik-accent-blue: var(--im-gold);
+  --nordvik-accent-green: var(--im-cogitator);
+  --nordvik-accent-red: var(--im-red-bright);
+  --nordvik-accent-gold: var(--im-gold);
+
+  --nordvik-chat-own: rgba(176, 141, 87, 0.22);
+  --nordvik-chat-own-border: var(--im-brass);
+  --nordvik-input-focus: var(--im-cogitator);
+
+  --nordvik-roll-crit: var(--im-cogitator);
+  --nordvik-roll-fail: var(--im-red-bright);
+  --nordvik-roll-normal: var(--im-ink-muted);
+
+  --nordvik-drop-zone: rgba(176, 141, 87, 0.15);
+  --nordvik-drop-zone-hover: rgba(176, 141, 87, 0.3);
+
+  /* Chakra (menus, dialogs, inputs, popovers) */
+  --chakra-colors-bg: var(--im-frame);
+  --chakra-colors-bg-panel: #1e1a14;
+  --chakra-colors-bg-subtle: #1a1712;
+  --chakra-colors-bg-muted: #2a241b;
+  --chakra-colors-bg-emphasized: #3a3226;
+  --chakra-colors-fg: var(--im-ink);
+  --chakra-colors-fg-muted: var(--im-ink-muted);
+  --chakra-colors-fg-subtle: var(--im-ink-faint);
+  --chakra-colors-border: var(--im-slate);
+  --chakra-colors-border-muted: rgba(47, 79, 79, 0.6);
+  --chakra-colors-border-subtle: rgba(47, 79, 79, 0.4);
+  --chakra-colors-border-emphasized: var(--im-slate-light);
+}
+
+/* ── Type ────────────────────────────────────────────────────────────────── */
+#NordvikManagerMain,
+.nm_basePanel,
+.nm_dialog {
+  font-family: var(--im-body);
+}
+
+#NordvikManagerMain h1,
+#NordvikManagerMain h2,
+#NordvikManagerMain h3,
+#NordvikManagerMain h4,
+.nm_label,
+.nm_dialog header,
+.nm_toolbar {
+  font-family: var(--im-heading);
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+.nm_label {
+  color: var(--im-brass);
+  border-bottom: 1px solid rgba(112, 128, 144, 0.5);
+}
+
+#NordvikManagerMain code,
+#NordvikManagerMain pre,
+#NordvikManagerMain textarea {
+  font-family: var(--im-mono);
+}
+
+::selection {
+  background: var(--im-teal);
+  color: #f3ead2;
+}
+
+/* ── Toolbar: an iron bar of the sheet's steel tabs ──────────────────────── */
+.nm_toolbar {
+  background: linear-gradient(#1a1e22, #0d0f11);
+  border: 1px solid #000;
+  border-bottom: 2px solid var(--im-slate);
+  box-shadow: inset 0 1px 0 rgba(192, 192, 192, 0.15);
+  gap: 3px;
+}
+
+.nm_toolbar button {
+  height: 26px;
+  padding: 0 14px;
+  border: 1px solid #0b0d0f;
+  border-radius: 2px;
+  background: linear-gradient(105deg, #3e484f 0%, #4a555d 45%, #2c3638 55%, #3e484f 100%);
+  color: silver;
+  font-family: var(--im-heading);
+  font-variant: small-caps;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 1px #000;
+  box-shadow: inset 0 1px 1px rgba(192, 192, 192, 0.35), inset 0 -1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.nm_toolbar button svg {
+  color: silver;
+}
+
+.nm_toolbar button:hover,
+.nm_toolbar button[data-state="open"] {
+  background: var(--im-slate);
+  color: whitesmoke;
+  box-shadow: inset 0 1px 1px rgba(143, 175, 175, 0.4), inset 0 -1px 1px #000, 0 2px 0 var(--im-brass);
+}
+
+.nm_toolbar button:focus-visible {
+  outline: 1px solid var(--im-brass);
+  outline-offset: 1px;
+}
+
+/* ── Panels: dark parchment ──────────────────────────────────────────────── */
+.nm_basePanel {
+  background: var(--im-parchment);
+  background-size: auto, 240px 240px, auto;
+  color: var(--im-ink);
+  box-shadow:
+    inset 0 0 0 1px rgba(112, 128, 144, 0.45),
+    inset 0 0 60px rgba(0, 0, 0, 0.55);
+}
+
+.nm_container {
+  border: 1px solid var(--im-slate);
+  border-radius: 2px;
+  background: rgba(10, 8, 5, 0.25);
+}
+
+/* ── Dialogs: parchment with a brass double rule ─────────────────────────── */
+.nm_dialog {
+  background: var(--im-parchment);
+  background-size: auto, 240px 240px, auto;
+  color: var(--im-ink);
+  border: 3px double var(--im-brass);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #000, 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+.nm_dialog header {
+  color: var(--im-gold);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.5);
+}
+
+/* ── Lists: parchment slips; clickable ones light up with a brass edge ──── */
+.nm_dlistitem_card {
+  border: 1px solid #0b0a08;
+  border-left: 3px solid var(--im-slate);
+  border-radius: 2px;
+  transition: border-color 0.12s, background-color 0.12s;
+}
+
+.nm_dlistitem_card_hover:hover {
+  border-left-color: var(--im-brass);
+}
+
+/* ── Status bar: the bottom of the iron frame ────────────────────────────── */
+.nm_statusBar {
+  background: linear-gradient(#0d0f11, #1a1e22);
+  color: var(--im-ink-muted);
+  border-top: 2px solid var(--im-slate);
+  box-shadow: inset 0 -1px 0 rgba(192, 192, 192, 0.12);
+}
+
+/* ── Chat ────────────────────────────────────────────────────────────────── */
+.nm_chatMessage {
+  background: rgba(44, 38, 28, 0.9);
+  border: 1px solid #0b0a08;
+  border-left: 3px solid var(--im-slate);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.nm_chatMessage_own {
+  background: rgba(176, 141, 87, 0.2);
+  border-left-color: var(--im-brass);
+}
+
+.nm_chatInput,
+.nm_chatInput textarea,
+.nm_chatInput input {
+  background: var(--im-scanlines);
+  color: var(--im-cogitator);
+  font-family: var(--im-mono);
+  caret-color: var(--im-cogitator);
+}
+
+.nm_chatInput:focus-within {
+  box-shadow: 0 0 0 1px rgba(59, 209, 111, 0.6), 0 0 8px rgba(59, 209, 111, 0.25);
+}
+
+/* ── Text fields: sunken cogitator screens, glowing green when focused ──── */
+.nm_basePanel input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
+.nm_basePanel textarea,
+.nm_dialog input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
+.nm_dialog textarea {
+  background: var(--im-scanlines);
+  border-color: var(--im-slate);
+  color: var(--im-ink);
+}
+
+.nm_basePanel input:focus,
+.nm_basePanel textarea:focus,
+.nm_dialog input:focus,
+.nm_dialog textarea:focus {
+  outline: none;
+  border-color: var(--im-cogitator);
+  box-shadow: 0 0 0 1px rgba(59, 209, 111, 0.6), 0 0 8px rgba(59, 209, 111, 0.25);
+}
+
+/* ── Buttons: the sheet's hover ──────────────────────────────────────────── */
+.nm_basePanel button:not([data-part="context-trigger"]):hover,
+.nm_dialog button:not([data-part="context-trigger"]):hover {
+  background-color: var(--im-slate);
+  color: whitesmoke;
+}
+
+/* ── Scrollbars ──────────────────────────────────────────────────────────── */
+#NordvikManagerMain * {
+  scrollbar-color: var(--im-slate) transparent;
+}
