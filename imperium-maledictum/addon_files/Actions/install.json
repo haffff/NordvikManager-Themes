@@ -8,7 +8,7 @@
       "Data": {
         "Label": "Find the theme stylesheet",
         "Name": "themeId",
-        "Value": "%qn:resource-\"theme_imperium_maledictum_theme.css\".id%"
+        "Value": "%qn:resource-\"imperiummaledictumtheme_theme.css\".id%"
       },
       "Type": "SetVariable"
     },

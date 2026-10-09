@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/haffff/NordvikManager-Addons/refs/heads/main/schemas/addon.json",
-  "key": "theme_imperium_maledictum",
+  "key": "imperiummaledictumtheme",
   "name": "Imperium Maledictum theme",
   "description": "Dark imperial frame and parchment panels to go with the Imperium Maledictum character sheet. Switches itself on when installed (Game Settings > Appearance).",
   "version": "0.0.1",

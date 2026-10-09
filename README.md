@@ -4,7 +4,7 @@ Theme addons (registry category **Themes**): a stylesheet, plus the fonts and te
 
 | Theme | Folder | Addon key |
 |---|---|---|
-| Imperium Maledictum: a dark imperial frame, parchment panels and cogitator readouts | `imperium-maledictum/` | `theme_imperium_maledictum` |
+| Imperium Maledictum: a dark imperial frame, parchment panels and cogitator readouts | `imperium-maledictum/` | `imperiummaledictumtheme` |
 
 ## Layout of a theme
 
