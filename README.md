@@ -5,6 +5,7 @@ Theme addons (registry category **Themes**): a stylesheet, plus the fonts and te
 | Theme | Folder | Addon key |
 |---|---|---|
 | Imperium Maledictum: a dark imperial frame, parchment panels and cogitator readouts | `imperium-maledictum/` | `imperiummaledictumtheme` |
+| Fifth Edition: light parchment pages in a dark leather binding, crimson headings and gold rules (matches the Fifth Edition (SRD) character sheet) | `fifth-edition/` | `fiftheditiontheme` |
 
 ## Layout of a theme
 
@@ -40,3 +41,5 @@ How the theme switches itself on:
 - The code and stylesheets in this repo are MIT.
 - IM Fell Great Primer is by Igino Marini, under the SIL Open Font License 1.1 (`imperium-maledictum/assets/OFL.txt`). It's subset to Latin and converted to WOFF2.
 - No artwork from the Roll20 sheet or Games Workshop is included. The parchment texture is generated SVG noise.
+- Cinzel (The Cinzel Project Authors) and Crimson Text (The Crimson Text Project Authors) are under the SIL Open Font License 1.1 (`fifth-edition/assets/OFL-*.txt`). They are the Latin-subset WOFF2 files from Fontsource.
+- The Fifth Edition theme uses no publisher artwork or trademarks. Its parchment and leather textures are generated SVG noise.
