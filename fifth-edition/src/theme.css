@@ -125,11 +125,14 @@
   --nordvik-list-item-hover: var(--fe-parchment-dark);
   --nordvik-list-item-text: var(--fe-ink);
 
-  /* The dock: leather tabs with gold titles. The dock draws the current tab in the
-     panel colour (the panel body behind the page, which BasePanel covers with
-     parchment) and the others in the tab colour, with one title colour for both. */
+  /* The dock: leather tabs with gold titles on parchment panels. Without the
+     current-tab variables (older app versions) the current tab takes the panel
+     colour, so it shows parchment there. */
   --nordvik-dock-void: var(--fe-leather-deep);
-  --nordvik-dock-panel: var(--fe-leather-raised);
+  --nordvik-dock-panel: var(--fe-parchment);
+  --nordvik-dock-tab-active: var(--fe-leather-raised);
+  --nordvik-dock-tab-active-text: var(--fe-gold-light);
+  --nordvik-dock-tab-button: rgba(232, 184, 75, 0.35);
   --nordvik-dock-border: #120804;
   --nordvik-dock-border-active: var(--fe-gold);
   --nordvik-dock-tab: var(--fe-leather);
