@@ -125,18 +125,18 @@
   --nordvik-list-item-hover: var(--fe-parchment-dark);
   --nordvik-list-item-text: var(--fe-ink);
 
-  /* The dock: page tabs on a leather binding. The current tab is drawn in the panel
-     colour and the others in the tab colour, with one text colour for both, so the
-     tabs are parchment with ink titles; only the bar behind them is leather. */
+  /* The dock: leather tabs with gold titles. The dock draws the current tab in the
+     panel colour (the panel body behind the page, which BasePanel covers with
+     parchment) and the others in the tab colour, with one title colour for both. */
   --nordvik-dock-void: var(--fe-leather-deep);
-  --nordvik-dock-panel: var(--fe-parchment);
+  --nordvik-dock-panel: var(--fe-leather-raised);
   --nordvik-dock-border: #120804;
   --nordvik-dock-border-active: var(--fe-gold);
-  --nordvik-dock-tab: var(--fe-parchment-darker);
-  --nordvik-dock-tab-text: var(--fe-ink);
-  --nordvik-dock-button-hover: var(--fe-rule-light);
-  --nordvik-dock-scrollbar: var(--fe-rule);
-  --nordvik-dock-accent: var(--fe-crimson);
+  --nordvik-dock-tab: var(--fe-leather);
+  --nordvik-dock-tab-text: var(--fe-gold-light);
+  --nordvik-dock-button-hover: var(--fe-crimson);
+  --nordvik-dock-scrollbar: var(--fe-gold);
+  --nordvik-dock-accent: var(--fe-gold);
 
   --nordvik-text-strong: #000;
   --nordvik-text-soft: var(--fe-ink-light);
