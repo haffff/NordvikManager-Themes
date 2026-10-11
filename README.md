@@ -29,7 +29,7 @@ pnpm install
 pnpm run pack imperium-maledictum
 ```
 
-You can install `packed/imperium-maledictum.zip` by hand, or attach it to a GitHub Release and point the registry entry's `releaseUrl` at that asset.
+You can install `packed/imperium-maledictum.zip` by hand. Releases are made by the Release workflow (see below).
 
 How the theme switches itself on:
 - The install action finds the stylesheet with `%qn:resource-"<addon key>_theme.css".id%` and appends its id to the game's `customStylesheets`. It keeps any other stylesheets already there.
@@ -43,3 +43,10 @@ How the theme switches itself on:
 - No artwork from the Roll20 sheet or Games Workshop is included. The parchment texture is generated SVG noise.
 - Cinzel (The Cinzel Project Authors) and Crimson Text (The Crimson Text Project Authors) are under the SIL Open Font License 1.1 (`fifth-edition/assets/OFL-*.txt`). They are the Latin-subset WOFF2 files from Fontsource.
 - The Fifth Edition theme uses no publisher artwork or trademarks. Its parchment and leather textures are generated SVG noise.
+
+## Releasing
+
+1. Bump `version` in `<theme>/addon_files/info.json` and merge it as usual.
+2. Run **Actions → Release → Run workflow**. Pick the theme.
+
+The workflow packs the addon, checks that the zip's `info.json` matches, and publishes a GitHub Release (tag `<theme>-<version>`, asset `<theme>.zip`). It refuses a version that is already released. The registry ([NordvikManager-Addons](https://github.com/haffff/NordvikManager-Addons)) picks the new version up in its daily sync pull request.
