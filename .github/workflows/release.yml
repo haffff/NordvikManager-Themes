@@ -1,0 +1,28 @@
+name: Release
+
+# Releases one theme. Bump "version" in <theme>/addon_files/info.json first, then run
+# this and pick the theme. Each theme has its own version, so the tag is
+# <theme>-<version> and the asset <theme>.zip. The registry
+# (haffff/NordvikManager-Addons) picks the new version up in its daily sync PR.
+on:
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: Theme to release
+        required: true
+        type: choice
+        options:
+          - imperium-maledictum
+          - fifth-edition
+
+jobs:
+  release:
+    uses: haffff/NordvikManager-Addons/.github/workflows/release-addon.yml@main
+    permissions:
+      contents: write
+    with:
+      addon-dir: ${{ inputs.theme }}
+      pack-command: pnpm run pack ${{ inputs.theme }}
+      zip-path: packed/${{ inputs.theme }}.zip
+      asset-name: ${{ inputs.theme }}.zip
+      tag: ${{ inputs.theme }}-{version}
