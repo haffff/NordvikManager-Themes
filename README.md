@@ -32,7 +32,7 @@ pnpm run pack imperium-maledictum
 You can install `packed/imperium-maledictum.zip` by hand. Releases are made by the Release workflow (see below).
 
 How the theme switches itself on:
-- The install action finds the stylesheet with `%qn:resource-"<addon key>_theme.css".id%` and appends its id to the game's `customStylesheets`. It keeps any other stylesheets already there.
+- The install action finds the stylesheet with `%q:resource[<addon key>_theme.css].id%` and appends its id to the game's `customStylesheets`. It keeps any other stylesheets already there.
 - You can switch it off in Game Settings → Appearance. Uninstalling removes it.
 - Character sheets are sandboxed, so they keep their own look.
 
