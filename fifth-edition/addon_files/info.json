@@ -3,9 +3,9 @@
   "key": "fiftheditiontheme",
   "name": "Fifth Edition theme",
   "description": "Light parchment pages in a dark leather binding, with crimson headings and gold rules, to go with the Fifth Edition (SRD) character sheet. Switches itself on when installed (Game Settings > Appearance).",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "haffff",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "categories": ["theme"],
   "dependencies": []
 }

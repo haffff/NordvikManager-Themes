@@ -32,13 +32,13 @@ pnpm run pack imperium-maledictum
 You can install `packed/imperium-maledictum.zip` by hand. Releases are made by the Release workflow (see below).
 
 How the theme switches itself on:
-- The install action finds the stylesheet with `%qn:resource-"<addon key>_theme.css".id%` and appends its id to the game's `customStylesheets`. It keeps any other stylesheets already there.
+- The install action finds the stylesheet with `%q:resource[<addon key>_theme.css].id%` and appends its id to the game's `customStylesheets`. It keeps any other stylesheets already there.
 - You can switch it off in Game Settings → Appearance. Uninstalling removes it.
 - Character sheets are sandboxed, so they keep their own look.
 
 ## Licences
 
-- The code and stylesheets in this repo are MIT.
+- The code and stylesheets in this repo are under the [GNU Affero General Public License v3](LICENSE) (`AGPL-3.0-only`), with an additional attribution term: see [NOTICE](NOTICE).
 - IM Fell Great Primer is by Igino Marini, under the SIL Open Font License 1.1 (`imperium-maledictum/assets/OFL.txt`). It's subset to Latin and converted to WOFF2.
 - No artwork from the Roll20 sheet or Games Workshop is included. The parchment texture is generated SVG noise.
 - Cinzel (The Cinzel Project Authors) and Crimson Text (The Crimson Text Project Authors) are under the SIL Open Font License 1.1 (`fifth-edition/assets/OFL-*.txt`). They are the Latin-subset WOFF2 files from Fontsource.
