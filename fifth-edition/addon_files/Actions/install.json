@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/haffff/NordvikManager-Addons/refs/heads/main/schemas/action.json",
   "name": "Install addon",
   "hook": 1,
   "isEnabled": true,
@@ -8,7 +9,7 @@
       "Data": {
         "Label": "Find the theme stylesheet",
         "Name": "themeId",
-        "Value": "%qn:resource-\"fiftheditiontheme_theme.css\".id%"
+        "Value": "%q:resource[fiftheditiontheme_theme.css].id%"
       },
       "Type": "SetVariable"
     },
