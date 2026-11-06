@@ -5,7 +5,7 @@ Theme addons (registry category **Themes**): a stylesheet, plus the fonts and te
 | Theme | Folder | Addon key |
 |---|---|---|
 | Imperium Maledictum: a dark imperial frame, parchment panels and cogitator readouts | `imperium-maledictum/` | `imperiummaledictumtheme` |
-| Fifth Edition: a dark leather-bound tome, with gold headings and rules and crimson highlights (frames the Fifth Edition (SRD) character sheet) | `fifth-edition/` | `fiftheditiontheme` |
+| Fifth Edition: a dark leather-bound tome, with brass headings and tooling and crimson highlights (frames the Fifth Edition (SRD) character sheet) | `fifth-edition/` | `fiftheditiontheme` |
 
 ## Layout of a theme
 

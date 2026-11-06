@@ -1,7 +1,7 @@
 /*
  * Fifth Edition theme for NordvikManager
  * A dark leather-bound tome: oxblood leather panels, cream text, Cinzel headings in
- * gold, gold-tooled rules and crimson for what's picked. It frames the Fifth Edition
+ * brass, brass tooling where it counts and crimson for what's picked. It frames the Fifth Edition
  * (SRD) character sheet (same crimson, gold and fonts), which keeps its own parchment.
  *
  * The app's default look is dark, so the palette below only warms the colours the app
@@ -69,8 +69,10 @@
   --fe-cream-soft: #ddcca5;
   --fe-cream-muted: #b9a37c;
   --fe-cream-faint: #8f7b5c;
-  --fe-gold: #c8960c;
-  --fe-gold-light: #e8b84b;
+  /* Brass, used sparingly: headings, the active tab, the spine's edge, dialog borders. */
+  --fe-gold: #9c7a3c;
+  --fe-gold-light: #c9a96e;
+  --fe-gold-focus: #b8964e;
   /* Crimson bright enough to read on leather (the sheet's #8b1a1a isn't). */
   --fe-crimson: #b8392f;
   --fe-crimson-light: #d0544a;
@@ -94,7 +96,7 @@
   --nordvik-accent: var(--fe-crimson);
   --nordvik-selection-color: var(--fe-crimson);
   --nordvik-item-color: rgba(239, 227, 196, 0.06);
-  --nordvik-item-hover-color: rgba(200, 150, 12, 0.18);
+  --nordvik-item-hover-color: rgba(156, 122, 60, 0.2);
   --nordvik-button-color: var(--fe-leather-raised);
   --nordvik-button-color-hover: var(--fe-leather-high);
   --nordvik-button-color-active: var(--fe-crimson-deep);
@@ -130,7 +132,7 @@
   --nordvik-dock-tab-text: var(--fe-cream-muted);
   --nordvik-dock-tab-active: var(--fe-leather-raised);
   --nordvik-dock-tab-active-text: var(--fe-gold-light);
-  --nordvik-dock-tab-button: rgba(232, 184, 75, 0.35);
+  --nordvik-dock-tab-button: rgba(201, 169, 110, 0.35);
   --nordvik-dock-border: #0c0503;
   --nordvik-dock-border-active: var(--fe-gold);
   --nordvik-dock-button-hover: var(--fe-crimson);
@@ -149,14 +151,14 @@
 
   --nordvik-chat-own: rgba(184, 57, 47, 0.14);
   --nordvik-chat-own-border: var(--fe-crimson);
-  --nordvik-input-focus: var(--fe-gold);
+  --nordvik-input-focus: var(--fe-gold-focus);
 
   --nordvik-roll-crit: var(--fe-green);
   --nordvik-roll-fail: var(--fe-crimson-light);
   --nordvik-roll-normal: var(--fe-cream-muted);
 
-  --nordvik-drop-zone: rgba(200, 150, 12, 0.12);
-  --nordvik-drop-zone-hover: rgba(200, 150, 12, 0.28);
+  --nordvik-drop-zone: rgba(156, 122, 60, 0.14);
+  --nordvik-drop-zone-hover: rgba(156, 122, 60, 0.3);
 
   /* Chakra (menus, dialogs, inputs, popovers) */
   --chakra-colors-bg: var(--fe-leather);
@@ -226,7 +228,7 @@
 .nm_label {
   color: var(--fe-gold-light);
   font-weight: 700;
-  border-bottom: 1px solid rgba(200, 150, 12, 0.55);
+  border-bottom: 1px solid var(--fe-leather-edge);
 }
 
 #NordvikManagerMain code,
@@ -245,7 +247,7 @@
   background-size: 200px 200px, auto;
   border: 1px solid #000;
   border-bottom: 2px solid var(--fe-gold);
-  box-shadow: inset 0 1px 0 rgba(232, 184, 75, 0.18);
+  box-shadow: inset 0 1px 0 rgba(201, 169, 110, 0.15);
   color: var(--fe-cream);
   gap: 3px;
 }
@@ -261,7 +263,7 @@
   font-size: 13px;
   letter-spacing: 0.06em;
   text-shadow: 0 1px 1px #000;
-  box-shadow: inset 0 0 0 1px rgba(200, 150, 12, 0.35), inset 0 1px 0 rgba(232, 184, 75, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(110, 80, 56, 0.6), inset 0 1px 0 rgba(201, 169, 110, 0.18);
 }
 
 .nm_toolbar button svg {
@@ -272,7 +274,7 @@
 .nm_toolbar button[data-state="open"] {
   background: linear-gradient(var(--fe-crimson), var(--fe-crimson-deep));
   color: #fff8e6;
-  box-shadow: inset 0 0 0 1px rgba(232, 184, 75, 0.6), 0 2px 0 var(--fe-gold);
+  box-shadow: inset 0 0 0 1px rgba(201, 169, 110, 0.6), 0 2px 0 var(--fe-gold);
 }
 
 .nm_toolbar button:focus-visible {
@@ -285,7 +287,6 @@
   background: var(--fe-page);
   background-size: auto, 200px 200px, auto;
   color: var(--fe-cream);
-  box-shadow: inset 0 0 0 1px rgba(200, 150, 12, 0.18);
 }
 
 .nm_container {
@@ -307,14 +308,14 @@
 .nm_dialog header {
   color: var(--fe-gold-light);
   font-weight: 700;
-  border-bottom: 1px solid rgba(200, 150, 12, 0.55);
+  border-bottom: 1px solid var(--fe-leather-edge);
 }
 
 /* ── Lists: raised slips with a gold edge, crimson when picked ───────────── */
 .nm_dlistitem_card {
   background: var(--nordvik-list-item);
   border: 1px solid var(--fe-leather-edge);
-  border-left: 3px solid var(--fe-gold);
+  border-left: 3px solid var(--fe-rule);
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
   transition: border-color 0.12s, background-color 0.12s;
@@ -337,7 +338,7 @@
 .nm_chatMessage {
   background: var(--fe-leather-raised);
   border: 1px solid var(--fe-leather-edge);
-  border-left: 3px solid var(--fe-rule-light);
+  border-left: 3px solid var(--fe-rule);
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
@@ -367,8 +368,8 @@
 .nm_dialog input:focus,
 .nm_dialog textarea:focus {
   outline: none;
-  border-color: var(--fe-gold);
-  box-shadow: 0 0 0 1px var(--fe-gold), 0 0 6px rgba(200, 150, 12, 0.35);
+  border-color: var(--fe-gold-focus);
+  box-shadow: 0 0 0 1px var(--fe-gold-focus), 0 0 6px rgba(184, 150, 78, 0.3);
 }
 
 #NordvikManagerMain ::placeholder {
