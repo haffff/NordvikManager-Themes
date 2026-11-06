@@ -1,12 +1,11 @@
 /*
  * Fifth Edition theme for NordvikManager
- * Light parchment pages in a dark leather binding: Cinzel headings in crimson, gold
- * rules and dark ink, to sit next to the Fifth Edition (SRD) character sheet
- * (same parchment, crimson, gold and fonts).
+ * A dark leather-bound tome: oxblood leather panels, cream text, Cinzel headings in
+ * brass, brass tooling where it counts and crimson for what's picked. It frames the Fifth Edition
+ * (SRD) character sheet (same crimson, gold and fonts), which keeps its own parchment.
  *
- * Pages are the default: every variable below is set for light parchment, and the
- * leather parts (toolbar, status bar, dock frame, battle map menus) switch back to
- * dark values on their own elements.
+ * The app's default look is dark, so the palette below only warms the colours the app
+ * already uses: no part of the app is turned inside out.
  *
  * Source file: @ASSET(name) is replaced by scripts/pack.mjs with a data: URI of
  * assets/<name>, so the built stylesheet loads nothing from outside the game.
@@ -56,182 +55,134 @@
   src: url("@ASSET(crimson-text-latin-600-normal.woff2)") format("woff2");
 }
 
-/* ── Palette: pages ──────────────────────────────────────────────────────── */
+/* ── Palette ─────────────────────────────────────────────────────────────── */
 :root,
 .dark {
-  /* Theme's own names, used below */
-  --fe-leather: #2a1610;
-  --fe-leather-raised: #3a2017;
-  --fe-leather-deep: #170b07;
+  /* Theme's own names, used below. Leather from darkest to lightest. */
+  --fe-leather-deep: #140a06;        /* dock gaps, recessed fields */
+  --fe-leather: #22140e;             /* panels */
+  --fe-leather-raised: #2e1b13;      /* slips, cards, current tab */
+  --fe-leather-high: #3a2318;        /* hover, controls */
+  --fe-leather-edge: #4f3022;        /* borders on leather */
   --fe-leather-grain: url("@ASSET(leather-grain.svg)");
-  --fe-cream: #efe3c4;                /* text on leather */
-  --fe-cream-muted: #c9b48a;
-  --fe-parchment: #f5f0e8;
-  --fe-parchment-dark: #ede4d0;
-  --fe-parchment-darker: #d9cdb4;
-  --fe-ink: #1a1209;
-  --fe-ink-light: #3d2e1a;
-  --fe-ink-muted: #6b5a42;
-  --fe-ink-faint: #8f7d62;
-  --fe-crimson: #8b1a1a;
-  --fe-crimson-light: #b22222;
+  --fe-cream: #efe3c4;               /* text */
+  --fe-cream-soft: #ddcca5;
+  --fe-cream-muted: #b9a37c;
+  --fe-cream-faint: #8f7b5c;
+  /* Brass, used sparingly: headings, the active tab, the spine's edge, dialog borders. */
+  --fe-gold: #9c7a3c;
+  --fe-gold-light: #c9a96e;
+  --fe-gold-focus: #b8964e;
+  /* Crimson bright enough to read on leather (the sheet's #8b1a1a isn't). */
+  --fe-crimson: #b8392f;
+  --fe-crimson-light: #d0544a;
   --fe-crimson-deep: #6b0f0f;
-  --fe-gold: #c8960c;
-  --fe-gold-light: #e8b84b;
-  --fe-rule: #8b7355;
-  --fe-rule-light: #c4a882;
-  --fe-green: #2d6a2d;
-  --fe-page: radial-gradient(ellipse at center, transparent 55%, rgba(92, 61, 30, 0.14) 100%),
-    url("@ASSET(parchment-noise.svg)"), var(--fe-parchment);
+  --fe-rule: #6e5038;
+  --fe-rule-light: #8b7355;
+  --fe-green: #6fae5f;
+  --fe-blue: #7ea6d8;
+  --fe-page: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.32) 100%),
+    var(--fe-leather-grain), var(--fe-leather);
   --fe-heading: "Cinzel", "Palatino Linotype", Georgia, serif;
   --fe-body: "Crimson Text", "Palatino Linotype", Georgia, serif;
   --fe-mono: "Courier New", Courier, monospace;
 
   /* App variables */
   --nordvik-font: var(--fe-body);
-  --nordvik-background-color: var(--fe-parchment);
-  --nordvik-text-color: var(--fe-ink);
-  --nordvik-secondary-color: var(--fe-parchment-dark);
+  --nordvik-background-color: var(--fe-leather);
+  --nordvik-text-color: var(--fe-cream);
+  --nordvik-secondary-color: var(--fe-leather-deep);
   /* The one highlight colour (selection, current tab, current turn, drop targets). */
   --nordvik-accent: var(--fe-crimson);
   --nordvik-selection-color: var(--fe-crimson);
-  --nordvik-item-color: rgba(139, 115, 85, 0.18);
-  --nordvik-item-hover-color: rgba(200, 150, 12, 0.16);
-  --nordvik-button-color: var(--fe-parchment-dark);
-  --nordvik-button-color-hover: var(--fe-parchment-darker);
-  --nordvik-button-color-active: var(--fe-rule-light);
-  --nordvik-button-hover: var(--fe-parchment-darker);
-  --nordvik-button-active: var(--fe-rule-light);
+  --nordvik-item-color: rgba(239, 227, 196, 0.06);
+  --nordvik-item-hover-color: rgba(156, 122, 60, 0.2);
+  --nordvik-button-color: var(--fe-leather-raised);
+  --nordvik-button-color-hover: var(--fe-leather-high);
+  --nordvik-button-color-active: var(--fe-crimson-deep);
+  --nordvik-button-hover: var(--fe-leather-high);
+  --nordvik-button-active: var(--fe-crimson-deep);
   --nordvik-button-border-color: var(--fe-rule);
 
-  --nordvik-surface-sunken: var(--fe-parchment-dark);
-  --nordvik-surface: rgba(245, 240, 232, 0.92);
-  --nordvik-surface-card: #fbf7ef;
-  --nordvik-surface-raised: #fffdf8;
-  --nordvik-surface-hover: var(--fe-parchment-dark);
-  --nordvik-border: var(--fe-rule);
-  --nordvik-divider: rgba(139, 115, 85, 0.45);
+  --nordvik-surface-sunken: var(--fe-leather-deep);
+  --nordvik-surface: rgba(34, 20, 14, 0.92);
+  --nordvik-surface-card: var(--fe-leather-raised);
+  --nordvik-surface-raised: var(--fe-leather-high);
+  --nordvik-surface-hover: var(--fe-leather-high);
+  --nordvik-border: var(--fe-leather-edge);
+  --nordvik-divider: rgba(139, 115, 85, 0.4);
 
-  --nordvik-control: #fffdf8;
+  --nordvik-control: var(--fe-leather-deep);
   --nordvik-control-border: var(--fe-rule);
-  --nordvik-control-hover: var(--fe-parchment-dark);
-  --nordvik-control-strong: var(--fe-parchment-darker);
+  --nordvik-control-hover: var(--fe-leather-high);
+  --nordvik-control-strong: var(--fe-leather-edge);
 
-  --nordvik-toolbar: var(--fe-leather);
-  --nordvik-status-bar: var(--fe-leather);
+  --nordvik-toolbar: var(--fe-leather-deep);
+  --nordvik-status-bar: var(--fe-leather-deep);
   --nordvik-status-bar-border: var(--fe-gold);
 
-  --nordvik-list-item: #fbf7ef;
-  --nordvik-list-item-hover: var(--fe-parchment-dark);
-  --nordvik-list-item-text: var(--fe-ink);
+  --nordvik-list-item: var(--fe-leather-raised);
+  --nordvik-list-item-hover: var(--fe-leather-high);
+  --nordvik-list-item-text: var(--fe-cream);
 
-  /* The dock: leather tabs with gold titles on parchment panels. Without the
-     current-tab variables (older app versions) the current tab takes the panel
-     colour, so it shows parchment there. */
+  /* The dock: dark gaps, leather tabs with gold titles. */
   --nordvik-dock-void: var(--fe-leather-deep);
-  --nordvik-dock-panel: var(--fe-parchment);
+  --nordvik-dock-panel: var(--fe-leather);
+  --nordvik-dock-tab: #1a0e09;
+  --nordvik-dock-tab-text: var(--fe-cream-muted);
   --nordvik-dock-tab-active: var(--fe-leather-raised);
   --nordvik-dock-tab-active-text: var(--fe-gold-light);
-  --nordvik-dock-tab-button: rgba(232, 184, 75, 0.35);
-  --nordvik-dock-border: #120804;
+  --nordvik-dock-tab-button: rgba(201, 169, 110, 0.35);
+  --nordvik-dock-border: #0c0503;
   --nordvik-dock-border-active: var(--fe-gold);
-  --nordvik-dock-tab: var(--fe-leather);
-  --nordvik-dock-tab-text: var(--fe-gold-light);
   --nordvik-dock-button-hover: var(--fe-crimson);
-  --nordvik-dock-scrollbar: var(--fe-gold);
+  --nordvik-dock-scrollbar: var(--fe-rule);
   --nordvik-dock-accent: var(--fe-gold);
 
-  --nordvik-text-strong: #000;
-  --nordvik-text-soft: var(--fe-ink-light);
-  --nordvik-text-muted: var(--fe-ink-muted);
-  --nordvik-text-subtle: var(--fe-ink-faint);
+  --nordvik-text-strong: #fff8e6;
+  --nordvik-text-soft: var(--fe-cream-soft);
+  --nordvik-text-muted: var(--fe-cream-muted);
+  --nordvik-text-subtle: var(--fe-cream-faint);
 
-  --nordvik-accent-blue: #2b4f7a;
+  --nordvik-accent-blue: var(--fe-blue);
   --nordvik-accent-green: var(--fe-green);
-  --nordvik-accent-red: var(--fe-crimson);
-  --nordvik-accent-gold: #9a7209;
+  --nordvik-accent-red: var(--fe-crimson-light);
+  --nordvik-accent-gold: var(--fe-gold-light);
 
-  --nordvik-chat-own: rgba(139, 26, 26, 0.08);
+  --nordvik-chat-own: rgba(184, 57, 47, 0.14);
   --nordvik-chat-own-border: var(--fe-crimson);
-  --nordvik-input-focus: var(--fe-gold);
+  --nordvik-input-focus: var(--fe-gold-focus);
 
   --nordvik-roll-crit: var(--fe-green);
-  --nordvik-roll-fail: var(--fe-crimson);
-  --nordvik-roll-normal: var(--fe-ink-muted);
+  --nordvik-roll-fail: var(--fe-crimson-light);
+  --nordvik-roll-normal: var(--fe-cream-muted);
 
-  --nordvik-drop-zone: rgba(200, 150, 12, 0.12);
-  --nordvik-drop-zone-hover: rgba(200, 150, 12, 0.28);
+  --nordvik-drop-zone: rgba(156, 122, 60, 0.14);
+  --nordvik-drop-zone-hover: rgba(156, 122, 60, 0.3);
 
-  /* Chakra (menus, dialogs, inputs, popovers): pages too */
-  --chakra-colors-bg: var(--fe-parchment);
-  --chakra-colors-bg-panel: #fbf7ef;
-  --chakra-colors-bg-subtle: var(--fe-parchment-dark);
-  --chakra-colors-bg-muted: var(--fe-parchment-dark);
-  --chakra-colors-bg-emphasized: var(--fe-parchment-darker);
-  --chakra-colors-fg: var(--fe-ink);
-  --chakra-colors-fg-muted: var(--fe-ink-muted);
-  --chakra-colors-fg-subtle: var(--fe-ink-faint);
-  --chakra-colors-border: var(--fe-rule-light);
-  --chakra-colors-border-muted: rgba(139, 115, 85, 0.4);
-  --chakra-colors-border-subtle: rgba(139, 115, 85, 0.25);
-  --chakra-colors-border-emphasized: var(--fe-rule);
-
-  /* Components written for the dark default use light greys for text and dark greys
-     for backgrounds: on a page, light greys become ink and dark greys parchment, and
-     whiteAlpha tints (hover, borders) become ink tints. */
-  --chakra-colors-gray-50: var(--fe-ink);
-  --chakra-colors-gray-100: var(--fe-ink);
-  --chakra-colors-gray-200: var(--fe-ink-light);
-  --chakra-colors-gray-300: var(--fe-ink-light);
-  --chakra-colors-gray-400: var(--fe-ink-muted);
-  --chakra-colors-gray-500: var(--fe-ink-faint);
-  --chakra-colors-gray-600: var(--fe-rule-light);
-  --chakra-colors-gray-700: var(--fe-parchment-darker);
-  --chakra-colors-gray-800: var(--fe-parchment-dark);
-  --chakra-colors-gray-900: #fbf7ef;
-  --chakra-colors-gray-950: #fffdf8;
-  --chakra-colors-white-alpha-50: rgba(26, 18, 9, 0.03);
-  --chakra-colors-white-alpha-100: rgba(26, 18, 9, 0.05);
-  --chakra-colors-white-alpha-200: rgba(26, 18, 9, 0.09);
-  --chakra-colors-white-alpha-300: rgba(26, 18, 9, 0.14);
-  --chakra-colors-white-alpha-400: rgba(26, 18, 9, 0.22);
-  --chakra-colors-white-alpha-500: rgba(26, 18, 9, 0.34);
-  --chakra-colors-white-alpha-600: rgba(26, 18, 9, 0.46);
-  --chakra-colors-white-alpha-700: rgba(26, 18, 9, 0.6);
-  --chakra-colors-white-alpha-800: rgba(26, 18, 9, 0.74);
-  --chakra-colors-white-alpha-900: rgba(26, 18, 9, 0.86);
-  --chakra-colors-white-alpha-950: rgba(26, 18, 9, 0.93);
-}
-
-/* ── Palette: leather (dark values back on the binding) ──────────────────── */
-.nm_toolbar,
-.nm_statusBar,
-.nm_bm_contextMenu,
-.nm_bm_popup,
-.nm_bm_overlay {
-  --nordvik-text-color: var(--fe-cream);
-  --nordvik-secondary-color: var(--fe-leather-deep);
-  --nordvik-item-color: rgba(239, 227, 196, 0.08);
-  --nordvik-item-hover-color: rgba(200, 150, 12, 0.22);
-  --nordvik-text-soft: var(--fe-cream);
-  --nordvik-text-muted: var(--fe-cream-muted);
+  /* Chakra (menus, dialogs, inputs, popovers) */
   --chakra-colors-bg: var(--fe-leather);
   --chakra-colors-bg-panel: var(--fe-leather-raised);
   --chakra-colors-bg-subtle: var(--fe-leather-deep);
   --chakra-colors-bg-muted: var(--fe-leather-raised);
-  --chakra-colors-bg-emphasized: #4a2a1e;
+  --chakra-colors-bg-emphasized: var(--fe-leather-high);
   --chakra-colors-fg: var(--fe-cream);
   --chakra-colors-fg-muted: var(--fe-cream-muted);
-  --chakra-colors-fg-subtle: #9c8664;
-  --chakra-colors-border: #5a3424;
+  --chakra-colors-fg-subtle: var(--fe-cream-faint);
+  --chakra-colors-border: var(--fe-leather-edge);
+  --chakra-colors-border-muted: rgba(139, 115, 85, 0.35);
+  --chakra-colors-border-subtle: rgba(139, 115, 85, 0.22);
+  --chakra-colors-border-emphasized: var(--fe-rule);
+
+  /* The app's greys, warmed: same order (50 lightest, 950 darkest), cream to leather. */
   --chakra-colors-gray-50: #f7f1e3;
   --chakra-colors-gray-100: #f2ead6;
   --chakra-colors-gray-200: var(--fe-cream);
-  --chakra-colors-gray-300: #ddcca5;
+  --chakra-colors-gray-300: var(--fe-cream-soft);
   --chakra-colors-gray-400: var(--fe-cream-muted);
-  --chakra-colors-gray-500: #9c8664;
-  --chakra-colors-gray-600: #6e5038;
-  --chakra-colors-gray-700: #4a2a1e;
+  --chakra-colors-gray-500: var(--fe-cream-faint);
+  --chakra-colors-gray-600: var(--fe-rule);
+  --chakra-colors-gray-700: var(--fe-leather-edge);
   --chakra-colors-gray-800: var(--fe-leather-raised);
   --chakra-colors-gray-900: var(--fe-leather);
   --chakra-colors-gray-950: var(--fe-leather-deep);
@@ -240,9 +191,12 @@
   --chakra-colors-white-alpha-200: rgba(239, 227, 196, 0.12);
   --chakra-colors-white-alpha-300: rgba(239, 227, 196, 0.18);
   --chakra-colors-white-alpha-400: rgba(239, 227, 196, 0.26);
+  --chakra-colors-white-alpha-500: rgba(239, 227, 196, 0.38);
   --chakra-colors-white-alpha-600: rgba(239, 227, 196, 0.5);
+  --chakra-colors-white-alpha-700: rgba(239, 227, 196, 0.64);
   --chakra-colors-white-alpha-800: rgba(239, 227, 196, 0.78);
-  color: var(--fe-cream);
+  --chakra-colors-white-alpha-900: rgba(239, 227, 196, 0.88);
+  --chakra-colors-white-alpha-950: rgba(239, 227, 196, 0.94);
 }
 
 /* ── Type ────────────────────────────────────────────────────────────────── */
@@ -268,13 +222,13 @@
 #NordvikManagerMain h2,
 #NordvikManagerMain h3,
 #NordvikManagerMain h4 {
-  color: var(--fe-crimson);
+  color: var(--fe-gold-light);
 }
 
 .nm_label {
-  color: var(--fe-crimson);
+  color: var(--fe-gold-light);
   font-weight: 700;
-  border-bottom: 1px solid var(--fe-gold);
+  border-bottom: 1px solid var(--fe-leather-edge);
 }
 
 #NordvikManagerMain code,
@@ -283,32 +237,33 @@
 }
 
 ::selection {
-  background: rgba(139, 26, 26, 0.85);
-  color: var(--fe-parchment);
+  background: rgba(184, 57, 47, 0.9);
+  color: #fff8e6;
 }
 
-/* ── Toolbar: a leather spine with gold-tooled buttons ───────────────────── */
+/* ── Toolbar: the spine, with gold-tooled buttons ────────────────────────── */
 .nm_toolbar {
-  background: var(--fe-leather-grain), linear-gradient(var(--fe-leather-raised), var(--fe-leather));
+  background: var(--fe-leather-grain), linear-gradient(var(--fe-leather-raised), var(--fe-leather-deep));
   background-size: 200px 200px, auto;
   border: 1px solid #000;
   border-bottom: 2px solid var(--fe-gold);
-  box-shadow: inset 0 1px 0 rgba(232, 184, 75, 0.18);
+  box-shadow: inset 0 1px 0 rgba(201, 169, 110, 0.15);
+  color: var(--fe-cream);
   gap: 3px;
 }
 
 .nm_toolbar button {
   height: 26px;
   padding: 0 14px;
-  border: 1px solid #120804;
+  border: 1px solid #0c0503;
   border-radius: 3px;
-  background: linear-gradient(#4a2a1e, #33190f);
+  background: linear-gradient(#4a2a1e, #2e1b13);
   color: var(--fe-cream);
   font-family: var(--fe-heading);
   font-size: 13px;
   letter-spacing: 0.06em;
   text-shadow: 0 1px 1px #000;
-  box-shadow: inset 0 0 0 1px rgba(200, 150, 12, 0.35), inset 0 1px 0 rgba(232, 184, 75, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(110, 80, 56, 0.6), inset 0 1px 0 rgba(201, 169, 110, 0.18);
 }
 
 .nm_toolbar button svg {
@@ -317,9 +272,9 @@
 
 .nm_toolbar button:hover,
 .nm_toolbar button[data-state="open"] {
-  background: linear-gradient(var(--fe-crimson-light), var(--fe-crimson-deep));
+  background: linear-gradient(var(--fe-crimson), var(--fe-crimson-deep));
   color: #fff8e6;
-  box-shadow: inset 0 0 0 1px rgba(232, 184, 75, 0.6), 0 2px 0 var(--fe-gold);
+  box-shadow: inset 0 0 0 1px rgba(201, 169, 110, 0.6), 0 2px 0 var(--fe-gold);
 }
 
 .nm_toolbar button:focus-visible {
@@ -327,49 +282,48 @@
   outline-offset: 1px;
 }
 
-/* ── Panels: pages ───────────────────────────────────────────────────────── */
+/* ── Panels: leather covers ──────────────────────────────────────────────── */
 .nm_basePanel {
   background: var(--fe-page);
-  background-size: auto, 300px 300px, auto;
-  color: var(--fe-ink);
-  box-shadow: inset 0 0 0 1px rgba(139, 115, 85, 0.5);
+  background-size: auto, 200px 200px, auto;
+  color: var(--fe-cream);
 }
 
 .nm_container {
-  border: 1px solid var(--fe-rule-light);
+  border: 1px solid var(--fe-leather-edge);
   border-radius: 4px;
-  background: rgba(255, 253, 248, 0.55);
+  background: rgba(0, 0, 0, 0.18);
 }
 
-/* ── Dialogs: a page with a gold double rule and a crimson title ─────────── */
+/* ── Dialogs: leather with a gold double rule and a gold title ───────────── */
 .nm_dialog {
   background: var(--fe-page);
-  background-size: auto, 300px 300px, auto;
-  color: var(--fe-ink);
+  background-size: auto, 200px 200px, auto;
+  color: var(--fe-cream);
   border: 3px double var(--fe-gold);
   border-radius: 4px;
-  box-shadow: 0 0 0 1px var(--fe-leather-deep), 0 14px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 1px #000, 0 14px 40px rgba(0, 0, 0, 0.7);
 }
 
 .nm_dialog header {
-  color: var(--fe-crimson);
+  color: var(--fe-gold-light);
   font-weight: 700;
-  border-bottom: 1px solid var(--fe-gold);
+  border-bottom: 1px solid var(--fe-leather-edge);
 }
 
-/* ── Lists: slips with a gold edge, crimson when picked ──────────────────── */
+/* ── Lists: raised slips with a gold edge, crimson when picked ───────────── */
 .nm_dlistitem_card {
   background: var(--nordvik-list-item);
-  border: 1px solid var(--fe-rule-light);
-  border-left: 3px solid var(--fe-gold);
+  border: 1px solid var(--fe-leather-edge);
+  border-left: 3px solid var(--fe-rule);
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(26, 18, 9, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
   transition: border-color 0.12s, background-color 0.12s;
 }
 
 .nm_dlistitem_card_hover:hover,
 .nm_dlistitem_card_selected {
-  border-left-color: var(--fe-crimson);
+  border-left-color: var(--fe-crimson-light);
 }
 
 /* ── Status bar: the bottom of the binding ───────────────────────────────── */
@@ -382,19 +336,19 @@
 
 /* ── Chat ────────────────────────────────────────────────────────────────── */
 .nm_chatMessage {
-  background: #fbf7ef;
-  border: 1px solid var(--fe-rule-light);
+  background: var(--fe-leather-raised);
+  border: 1px solid var(--fe-leather-edge);
   border-left: 3px solid var(--fe-rule);
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(26, 18, 9, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 .nm_chatMessage_own {
-  background: #f8ece6;
-  border-left-color: var(--fe-crimson);
+  background: linear-gradient(rgba(184, 57, 47, 0.14), rgba(184, 57, 47, 0.14)), var(--fe-leather-raised);
+  border-left-color: var(--fe-crimson-light);
 }
 
-/* ── Text fields: ruled boxes on the page, gold when focused ─────────────── */
+/* ── Text fields: recessed into the leather, gold when focused ───────────── */
 .nm_chatInput,
 .nm_chatInput textarea,
 .nm_chatInput input,
@@ -402,10 +356,10 @@
 .nm_basePanel textarea,
 .nm_dialog input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
 .nm_dialog textarea {
-  background: #fffdf8;
+  background: var(--fe-leather-deep);
   border-color: var(--fe-rule);
-  color: var(--fe-ink);
-  caret-color: var(--fe-crimson);
+  color: var(--fe-cream);
+  caret-color: var(--fe-gold-light);
 }
 
 .nm_chatInput:focus-within,
@@ -414,33 +368,34 @@
 .nm_dialog input:focus,
 .nm_dialog textarea:focus {
   outline: none;
-  border-color: var(--fe-gold);
-  box-shadow: 0 0 0 1px var(--fe-gold), 0 0 6px rgba(200, 150, 12, 0.35);
+  border-color: var(--fe-gold-focus);
+  box-shadow: 0 0 0 1px var(--fe-gold-focus), 0 0 6px rgba(184, 150, 78, 0.3);
 }
 
 #NordvikManagerMain ::placeholder {
-  color: var(--fe-ink-faint);
+  color: var(--fe-cream-faint);
   font-style: italic;
 }
 
-/* ── Buttons on a page ───────────────────────────────────────────────────── */
+/* ── Buttons on a panel ──────────────────────────────────────────────────── */
 .nm_basePanel button:not([data-part="context-trigger"]):hover,
 .nm_dialog button:not([data-part="context-trigger"]):hover {
-  background-color: var(--fe-parchment-darker);
-  color: var(--fe-crimson-deep);
+  background-color: var(--fe-leather-high);
+  color: var(--fe-gold-light);
 }
 
 /* ── Battle map menus: leather, readable over any map ────────────────────── */
 .nm_bm_contextMenu,
 .nm_bm_popup {
-  background: var(--fe-leather);
+  background: var(--fe-leather-raised);
+  color: var(--fe-cream);
   border: 1px solid var(--fe-gold);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
 }
 
 /* ── Scrollbars ──────────────────────────────────────────────────────────── */
-/* Rule-brown thumbs on a clear track, everywhere: the app's base stylesheet gives every
-   scrollbar a grey track (rgb(70,70,70)), which showed as grey bars along the pages. */
+/* Leather-brown thumbs on a clear track, everywhere: the app's base stylesheet gives
+   every scrollbar a grey track (rgb(70,70,70)), which shows as grey bars on leather. */
 html,
 body,
 body * {
@@ -457,21 +412,9 @@ body * {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--fe-ink-muted);
+  background: var(--fe-gold);
 }
 
 ::-webkit-scrollbar-corner {
   background: transparent;
-}
-
-/* On the leather, gold thumbs. */
-.nm_toolbar,
-.nm_toolbar *,
-.nm_statusBar,
-.nm_statusBar *,
-.nm_bm_contextMenu,
-.nm_bm_contextMenu *,
-.nm_bm_popup,
-.nm_bm_popup * {
-  scrollbar-color: var(--fe-gold) transparent;
 }
