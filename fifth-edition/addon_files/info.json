@@ -3,9 +3,10 @@
   "key": "fiftheditiontheme",
   "name": "Fifth Edition theme",
   "description": "A dark leather-bound tome: oxblood leather panels, cream text, brass Cinzel headings and brass tooling, with crimson for what you pick. Frames the Fifth Edition (SRD) character sheet. Switches itself on when installed (Game Settings > Appearance).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "haffff",
   "license": "AGPL-3.0-only",
   "categories": ["theme"],
-  "dependencies": []
+  "dependencies": [],
+  "network": {}
 }
